@@ -17,7 +17,9 @@ if __name__ == '__main__':
         # dimension vehicle
         [sheet_name2,["Bus Involvement", "Heavy Rigid Truck Involvement", "Articulated Truck Involvement"], None, None, "VehicleId", "-9", "Vehicle", "dim_vehicle_df.csv"],
         # dimension Time
-         [sheet_name, ['Time of Day','Time'], None, {"Time": r"(\d{2}:\d{2}:\d{2})"},"TimeID", "-9","Time", "dim_time.csv"]
+        [sheet_name, ['Time of Day','Time'], None, {"Time": r"(\d{2}:\d{2}:\d{2})"},"TimeID", "-9","Time", "dim_time.csv"],
+        # dimension hoilday
+        [sheet_name,["Christmas Period", "Easter Period"], None, None, "HolidayID", "-9", "Holiday", "dim_holiday.csv"]
     ]
     for [sheetname, dimension_variable, short_list, extract, dimension_primary_key, filter_value, convert_name, csv_name] in dim_table:
         dim_table_creation(sheetname, dimension_variable, short_list, extract, dimension_primary_key, filter_value, convert_name, csv_name)
