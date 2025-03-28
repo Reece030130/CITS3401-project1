@@ -4,8 +4,8 @@ import polars as pl # type: ignore
 def file_loading(filename: str, sheet_name: str) -> pl.DataFrame:
     df = pl.read_excel(filename, sheet_id=0)[sheet_name]
     new_columns = df.row(1)
-    sheet_name = df.rename({old: new for old, new in zip(df.columns, new_columns)}).slice(2)
-    return sheet_name
+    df = df.rename({old: new for old, new in zip(df.columns, new_columns)}).slice(2)
+    return df
 
 def dim_table_creation(sheet_name: pl.DataFrame, dimension_variable: list, short_list: list |None, extract : dict | None, dimension_primary_key: str, filter_value: str|int, convert_name: str, csv_name: str):
     dim_table_df = sheet_name.select(dimension_variable).unique()
@@ -19,7 +19,7 @@ def dim_table_creation(sheet_name: pl.DataFrame, dimension_variable: list, short
     if short_list:
         dim_table_df.sort(short_list)
     if extract:
-        for  i in extract:
+        for  i in extract:      
             dim_table_df = dim_table_df.with_columns(
                 pl.col(i).str.extract(extract[i]).str.strptime(pl.Time, "%H:%M:%S")
             )
