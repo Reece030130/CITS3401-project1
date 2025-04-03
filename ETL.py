@@ -29,4 +29,8 @@ def dim_table_creation(sheet_name: pl.DataFrame, dimension_variable: list, short
     )
     dim_table_df = dim_table_df.select([dimension_primary_key] + [col for col in dim_table_df.columns if col != dimension_primary_key])
     dim_table_df.write_csv(csv_name)
-    return None
+    return dim_table_df
+
+def fact_table_creation(dim_tables: pl.DataFrame, original_table: pl.DataFrame, dim_tables_variable: list[str]):
+    fact_table = original_table.join(dim_tables, on = dim_tables_variable).drop(dim_tables_variable)
+    return fact_table
