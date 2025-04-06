@@ -23,7 +23,7 @@ if __name__ == '__main__':
         # dimension Geography
         [sheet_name, dim_tables_variables[1], None, None, "GeoID", "-9", "Geo", "dim_geography.csv"],
         # dimension fatalities
-        [sheet_name2, dim_tables_variables[2], None, None, "FatalityId","-9", "Fatalities", "dim_fatalities.csv"],
+        [sheet_name2, dim_tables_variables[2], None, None, "FatalityPersonalInfoId","-9", "FatalitiesPI", "dim_fatalitiesPersonalInfo.csv"],
         # dimension crash
         [sheet_name, dim_tables_variables[3],None, None, "CrashID", '-9',"Crash", "dim_crash.csv"],
         # dimension road
