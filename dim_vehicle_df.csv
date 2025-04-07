@@ -1,0 +1,8 @@
+VehicleId,Bus Involvement,Heavy Rigid Truck Involvement,Articulated Truck Involvement
+Vehicle1,Yes,Yes,No
+Vehicle2,Yes,No,Yes
+Vehicle3,No,Yes,Yes
+Vehicle4,No,No,Yes
+Vehicle5,Yes,No,No
+Vehicle6,No,No,No
+Vehicle7,No,Yes,No
