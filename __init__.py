@@ -1,13 +1,31 @@
-from ETL import file_loading, dim_table_creation, fact_table_creation
+from ETL import file_loading, dim_table_creation, fact_table_creation,pl
 
 if __name__ == '__main__':
     sheet_name = file_loading("bitre_fatal_crashes_dec2024.xlsx","BITRE_Fatal_Crash")
     sheet_name2 =file_loading("bitre_fatalities_dec2024.xlsx", "BITRE_Fatality")
     sheet_name2 = sheet_name2.join(sheet_name.select(["Crash ID", "Number Fatalities"]), on="Crash ID", how="left")
+    sheet_name = sheet_name.rename({'SA4 Name 2021': 'Sa4 Name21', 'State':'Ste Name21', 'National LGA Name 2021': 'Lga Name21'})
+    sheet_name2 = sheet_name2.rename({'SA4 Name 2021': 'Sa4 Name21', 'State':'Ste Name21', 'National LGA Name 2021': 'Lga Name21'})
+    replacement_dict = {
+    'NSW': 'New South Wales',
+    'NT': 'Northern Territory',
+    'WA': 'Western Australia',
+    'SA': 'South Australia',
+    'ACT': 'Australian Capital Territory',
+    'Tas': 'Tasmania',
+    'Vic': 'Victoria',
+    'Qld': 'Queensland',
+    }
+    sheet_name = sheet_name.with_columns(
+        pl.col('Ste Name21').replace(replacement_dict).alias('Ste Name21')
+        )
+    sheet_name2 = sheet_name2.with_columns(
+        pl.col('Ste Name21').replace(replacement_dict).alias('Ste Name21')
+        )
     dim_tables = []
     dim_tables_variables = [
         ['Day of week', 'Dayweek', 'Month', 'Year'], 
-        ['State', 'SA4 Name 2021', 'National LGA Name 2021', 'National Remoteness Areas'],
+        ['Ste Name21', 'Sa4 Name21', 'Lga Name21', 'National Remoteness Areas'],
         ["Age Group", "Age", "Gender"],
         ['Crash Type'],
         ["National Road Type", "Road User"],
