@@ -1,0 +1,58 @@
+RoadId,National Road Type,Road User
+Road1,Collector Road,Pedestrian
+Road2,Arterial Road,Other/-9
+Road3,National or State Highway,Passenger
+Road4,Access road,Pedal cyclist
+Road5,Collector Road,Other/-9
+Road6,Sub-arterial Road,Passenger
+Road7,Undetermined,Motorcycle pillion passenger
+Road8,Undetermined,Pedestrian
+Road9,Access road,Other/-9
+Road10,National or State Highway,Pedestrian
+Road11,Undetermined,Passenger
+Road12,Undetermined,Pedal cyclist
+Road13,National or State Highway,Motorcycle pillion passenger
+Road14,Collector Road,Driver
+Road15,Local Road,Other/-9
+Road16,Local Road,Pedestrian
+Road17,Pedestrian Thoroughfare,Pedestrian
+Road18,Local Road,Passenger
+Road19,Local Road,Motorcycle pillion passenger
+Road20,Access road,Driver
+Road21,Busway,Motorcycle rider
+Road22,National or State Highway,Other/-9
+Road23,Arterial Road,Pedestrian
+Road24,Undetermined,Driver
+Road25,National or State Highway,Pedal cyclist
+Road26,Sub-arterial Road,Motorcycle rider
+Road27,Busway,Driver
+Road28,Undetermined,Motorcycle rider
+Road29,Sub-arterial Road,Other/-9
+Road30,Access road,Pedestrian
+Road31,Access road,Passenger
+Road32,Undetermined,Other/-9
+Road33,Pedestrian Thoroughfare,Pedal cyclist
+Road34,Collector Road,Motorcycle rider
+Road35,Busway,Passenger
+Road36,Local Road,Motorcycle rider
+Road37,National or State Highway,Driver
+Road38,Local Road,Pedal cyclist
+Road39,Local Road,Driver
+Road40,Pedestrian Thoroughfare,Motorcycle rider
+Road41,Arterial Road,Motorcycle rider
+Road42,Collector Road,Passenger
+Road43,Arterial Road,Driver
+Road44,Sub-arterial Road,Driver
+Road45,Arterial Road,Motorcycle pillion passenger
+Road46,Sub-arterial Road,Pedal cyclist
+Road47,Arterial Road,Passenger
+Road48,Access road,Motorcycle pillion passenger
+Road49,National or State Highway,Motorcycle rider
+Road50,Collector Road,Motorcycle pillion passenger
+Road51,Sub-arterial Road,Motorcycle pillion passenger
+Road52,Pedestrian Thoroughfare,Passenger
+Road53,Arterial Road,Pedal cyclist
+Road54,Pedestrian Thoroughfare,Driver
+Road55,Collector Road,Pedal cyclist
+Road56,Sub-arterial Road,Pedestrian
+Road57,Access road,Motorcycle rider
