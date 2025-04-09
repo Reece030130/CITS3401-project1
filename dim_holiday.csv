@@ -1,4 +1,4 @@
 HolidayID,Christmas Period,Easter Period
-Holiday1,No,Yes
-Holiday2,Yes,No
-Holiday3,No,No
+Holiday1,Yes,No
+Holiday2,No,No
+Holiday3,No,Yes
