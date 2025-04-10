@@ -1,6 +1,3 @@
-BEGIN;
-
-
 CREATE TABLE IF NOT EXISTS public.dim_crash
 (
     crashid character varying(50) COLLATE pg_catalog."default" NOT NULL,
@@ -8,25 +5,30 @@ CREATE TABLE IF NOT EXISTS public.dim_crash
     CONSTRAINT dim_crash_pkey PRIMARY KEY (crashid)
 );
 
+COPY dim_crash FROM '/tmp/project1/dim_crash.csv' WITH (FORMAT csv, HEADER true);
+
 CREATE TABLE IF NOT EXISTS public.dim_date
 (
     dateid character varying(50) COLLATE pg_catalog."default" NOT NULL,
     dayofweek character varying(20) COLLATE pg_catalog."default",
     dayweek character varying(20) COLLATE pg_catalog."default",
-    month character varying(20) COLLATE pg_catalog."default",
-    year character varying(20) COLLATE pg_catalog."default",
+    month INTEGER,
+    year INTEGER ,
     CONSTRAINT dim_date_pkey PRIMARY KEY (dateid)
 );
+
+COPY dim_date FROM '/tmp/project1/dim_date.csv' WITH (FORMAT csv, HEADER true);
 
 CREATE TABLE IF NOT EXISTS public.dim_fatalitiespersonalinfo
 (
     fatalitypersonalinfoid character varying(50) COLLATE pg_catalog."default" NOT NULL,
     agegroup character varying(20) COLLATE pg_catalog."default",
-    age character varying(20) COLLATE pg_catalog."default",
+    age INTEGER,
     gender character varying(10) COLLATE pg_catalog."default",
     CONSTRAINT dim_fatalitiespersonalinfo_pkey PRIMARY KEY (fatalitypersonalinfoid)
 );
 
+COPY dim_fatalitiesPersonalInfo FROM '/tmp/project1/dim_fatalitiesPersonalInfo.csv' WITH (FORMAT csv, HEADER true);
 CREATE TABLE IF NOT EXISTS public.dim_geography
 (
     geoid character varying(50) COLLATE pg_catalog."default" NOT NULL,
@@ -36,6 +38,7 @@ CREATE TABLE IF NOT EXISTS public.dim_geography
     nationalremotenessareas character varying(50) COLLATE pg_catalog."default",
     CONSTRAINT dim_geography_pkey PRIMARY KEY (geoid)
 );
+COPY dim_geography FROM '/tmp/project1/dim_geography.csv' WITH (FORMAT csv, HEADER true);
 
 CREATE TABLE IF NOT EXISTS public.dim_holiday
 (
@@ -45,6 +48,8 @@ CREATE TABLE IF NOT EXISTS public.dim_holiday
     CONSTRAINT dim_holiday_pkey PRIMARY KEY (holidayid)
 );
 
+COPY dim_holiday FROM '/tmp/project1/dim_holiday.csv' WITH (FORMAT csv, HEADER true);
+
 CREATE TABLE IF NOT EXISTS public.dim_road
 (
     roadid character varying(50) COLLATE pg_catalog."default" NOT NULL,
@@ -52,6 +57,7 @@ CREATE TABLE IF NOT EXISTS public.dim_road
     roaduser character varying(50) COLLATE pg_catalog."default",
     CONSTRAINT dim_road_pkey PRIMARY KEY (roadid)
 );
+COPY dim_road FROM '/tmp/project1/dim_road_df.csv' WITH (FORMAT csv, HEADER true);
 
 CREATE TABLE IF NOT EXISTS public.dim_time
 (
@@ -60,7 +66,7 @@ CREATE TABLE IF NOT EXISTS public.dim_time
     time TIME,
     CONSTRAINT dim_time_pkey PRIMARY KEY (timeid)
 );
-
+COPY dim_time FROM '/tmp/project1/dim_time.csv' WITH (FORMAT csv, HEADER true);
 CREATE TABLE IF NOT EXISTS public.dim_vehicle
 (
     vehicleid character varying(50) COLLATE pg_catalog."default" NOT NULL,
@@ -69,13 +75,13 @@ CREATE TABLE IF NOT EXISTS public.dim_vehicle
     articulatedtruckinvolvement character varying(50) COLLATE pg_catalog."default",
     CONSTRAINT dim_vehicle_pkey PRIMARY KEY (vehicleid)
 );
-
+COPY dim_vehicle FROM '/tmp/project1/dim_vehicle_df.csv' WITH (FORMAT csv, HEADER true);
 CREATE TABLE IF NOT EXISTS public.fact_table
 (
     fatalityid character varying(50) COLLATE pg_catalog."default" NOT NULL,
     crash_id character varying(50) COLLATE pg_catalog."default",
-    speedlimit character varying(20) COLLATE pg_catalog."default",
-    numberfatalities character varying(20) COLLATE pg_catalog."default",
+    speedlimit INTEGER,
+    numberfatalities INTEGER,
     dateid character varying(50) COLLATE pg_catalog."default",
     geoid character varying(50) COLLATE pg_catalog."default",
     fatalitypersonalinfoid character varying(50) COLLATE pg_catalog."default",
@@ -86,7 +92,7 @@ CREATE TABLE IF NOT EXISTS public.fact_table
     holidayid character varying(50) COLLATE pg_catalog."default",
     CONSTRAINT fact_table_pkey PRIMARY KEY (fatalityid)
 );
-
+COPY fact_table FROM '/tmp/project1/fact_table.csv' WITH (FORMAT csv, HEADER true);
 
 ALTER TABLE IF EXISTS public.fact_table
     ADD CONSTRAINT fk_crashid FOREIGN KEY (crashid)
@@ -142,34 +148,3 @@ ALTER TABLE IF EXISTS public.fact_table
     REFERENCES public.dim_vehicle (vehicleid) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION;
-
-
-COPY dim_crash FROM '/tmp/Project1/dim_crash.csv' WITH (FORMAT csv, HEADER true);
-
--- dim_date
-COPY dim_date FROM '/tmp/Project1/dim_date.csv' WITH (FORMAT csv, HEADER true);
-
--- dim_fatalitiesPersonalInfo
-COPY dim_fatalitiesPersonalInfo FROM '/tmp/Project1/dim_fatalitiesPersonalInfo.csv' WITH (FORMAT csv, HEADER true);
-
--- dim_geography
-COPY dim_geography FROM '/tmp/Project1/dim_geography.csv' WITH (FORMAT csv, HEADER true);
-
--- dim_holiday
-COPY dim_holiday FROM '/tmp/Project1/dim_holiday.csv' WITH (FORMAT csv, HEADER true);
-
--- dim_road
-COPY dim_road FROM '/tmp/Project1/dim_road_df.csv' WITH (FORMAT csv, HEADER true);
-
--- dim_time
-COPY dim_time FROM '/tmp/Project1/dim_time_df.csv' WITH (FORMAT csv, HEADER true);
-
--- dim_vehicle
-COPY dim_vehicle FROM '/tmp/Project1/dim_vehicle_df.csv' WITH (FORMAT csv, HEADER true);
-
--- fact_table
-COPY fact_table FROM '/tmp/Project1/fact_table.csv' WITH (FORMAT csv, HEADER true);
-
-
-
-select * from dim_holiday
