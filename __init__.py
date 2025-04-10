@@ -66,7 +66,7 @@ if __name__ == '__main__':
     ]
     for [sheetname, dimension_variable, short_list, extract, dimension_primary_key, filter_value, castint_value ,convert_name, csv_name] in dim_table_list:
         dim_tables.append(dim_table_creation(sheetname, dimension_variable, short_list, extract, dimension_primary_key, filter_value, castint_value, convert_name, csv_name))
-    fatal = dim_table_creation(sheet_name2, sheet_name2.columns ,None, {"Time": r"(\d{2}:\d{2}:\d{2})"}, "FatalityId",[],["Year","Month", "Age"],  "Fatality", "fact_table.csv")
+    fatal = dim_table_creation(sheet_name2, sheet_name2.columns ,None, {"Time": r"(\d{2}:\d{2}:\d{2})"}, "FatalityId",[],["Year","Month", "Age", "Speed Limit"],  "Fatality", "fact_table.csv")
     for i in range(len(dim_tables_variables)):
         fatal = fact_table_creation(dim_tables[i], fatal, dim_tables_variables[i])
     # Save final fact table

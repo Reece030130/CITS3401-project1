@@ -35,7 +35,7 @@ def dim_table_creation(sheet_name: pl.DataFrame, dimension_variable: list, sort_
             dim_table_df = dim_table_df.with_columns(
                 pl.when(pl.col(i).str.contains(r"^\d+$"))
                 .then(pl.col(i).cast(pl.Int64, strict=False))
-                .otherwise(None)  # or .otherwise(pl.lit("Unknown")) if you want to keep the original text
+                .otherwise(-1)  # or .otherwise(pl.lit("Unknown")) if you want to keep the original text
                 .alias(i)
             )
     dim_table_df.write_csv(csv_name)
